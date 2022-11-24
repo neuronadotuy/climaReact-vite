@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import axios from 'axios';
 
 const ClimaContext = createContext();
 
@@ -18,8 +19,14 @@ const ClimaProvider = ({ children }) => {
 		})
 	};
 
-	const consultarClima = (datos) => {
-		console.log(datos);
+	const consultarClima = async (datos) => {
+		try {
+			const appId = import.meta.env.VITE_API_KEY;
+			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${datos.ciudad},${datos.pais}&appid=${appId}`;
+			console.log(url);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return ( 
