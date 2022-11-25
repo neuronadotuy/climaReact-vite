@@ -10,6 +10,7 @@ const ClimaProvider = ({ children }) => {
 	});
 
 	const [result, setResult] = useState({});
+	const [invalidResult, setInvalidResult] = useState(false)
 	const [loading, setLoading] = useState(false);
 
 	const datosBusqueda = (e) => {
@@ -20,11 +21,12 @@ const ClimaProvider = ({ children }) => {
 	};
 
 	const consultarClima = async (datos) => {
-		try {
-			// reset result and include a loading spinner
-			setResult({});
-			setLoading(true);
+		// reset result and include a loading spinner
+		setResult({});
+		setLoading(true);
+		invalidResult && setInvalidResult(false);
 
+		try {
 			// api calls
 			const appId = import.meta.env.VITE_API_KEY;
 			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${datos.ciudad}&appid=${appId}`;
@@ -37,8 +39,10 @@ const ClimaProvider = ({ children }) => {
 
 			// remove the spinner
 			setLoading(false);
+
 		} catch (error) {
-			console.log(error);
+			setInvalidResult(true);
+			setLoading(false);
 		}
 	};
 
@@ -49,6 +53,7 @@ const ClimaProvider = ({ children }) => {
 				datosBusqueda,
 				consultarClima,
 				result,
+				invalidResult,
 				loading,
 			}}
 		>

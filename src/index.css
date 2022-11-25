@@ -1,8 +1,8 @@
 body {
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  background: rgb(0,126,101);
-  background: linear-gradient(45deg, rgb(0, 156, 125) 18%, rgba(26,140,163,1) 44%, rgba(232,93,255,1) 100%);
+  background: rgb(41,147,129);
+  background: linear-gradient(0deg, rgba(41,147,129,1) 0%, rgba(0,162,199,1) 100%);
   background-size: cover;
   background-repeat:no-repeat;
   font-size: 1rem;
@@ -35,9 +35,21 @@ main {
 }
 
 .search_form {
+  position: relative;
   align-items: center;
   display: flex;
   gap: 6px;
+}
+
+
+.errorMessage {
+  position: absolute;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  top: 20px;
+  left: 38px;
+  color: #ffffff;
 }
 
 .search_form .input_container{
@@ -54,20 +66,35 @@ main {
 
 .search_form .input_container input{
   min-width: 120px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 12px 28px -8px rgba(0,0,0,0.75);
   color: #242424;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
   border-radius: 16px;
-  border: none;/* border: 1px solid white; */
+  border: 1px solid white;
   outline: none;
   padding: 4px 12px;
   transition: all 0.3s ease-in-out;
 }
 
+.search_form .input_container .error{
+  background-color: rgb(255, 208, 208);
+  border: 1px solid rgb(255, 38, 38);
+}
+
 .search_form .input_container input:focus {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 12px 28px -6px rgba(0,0,0,0.75);
+  border: 1px solid white;
+}
+
+.search_button {
+  display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .search_button {
@@ -89,7 +116,7 @@ main {
 }
 
 .result_container {
-  max-width: 360px;
+  max-width: 400px;
   min-width: 260px;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.9);
@@ -99,6 +126,7 @@ main {
   display: flex;
   flex-direction: column;
   padding: 36px 24px;
+  margin-top: 36px;
   justify-content: center;
 }
 
@@ -218,16 +246,27 @@ main {
   gap: 12px;
 }
 
-
-
-
-
-
-.loading {
-  display: flex;
-  justify-content: center;
+.no_result_container {
+  max-width: 360px;
+  min-width: 260px;
   align-items: center;
-  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 1px 16px 43px -9px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  color: #242424;
+  gap: 12px;
+  display: flex;
+  padding: 12px 24px;
+  justify-content: center;
+}
+
+.no_result_container svg {
+  width: 24px;
+  color: rgb(255, 38, 38);
+}
+
+.no_result_container {
+  font-size: 12px;
 }
 
 /* Spinner */

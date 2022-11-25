@@ -1,58 +1,36 @@
 import useClima from '../hooks/useClima';
 import { MapPinIcon, CloudIcon } from '@heroicons/react/24/outline';
-import Cloud from '../../public/img/cloudy.svg'
-import Sunny from '../../public/img/sunny.svg'
 
 const Resultado = () => {
 
 	const { result } = useClima();
-	console.log(result);
 
 	const { name, sys:{ country }, main:{ temp, feels_like, temp_min, temp_max, humidity}, weather} = result
 
 	let getWeather = weather[0].main;
-	let printWeather;
-	let printWeatherBackground
-	
-	switch (getWeather) {
-		case 'Clouds':
-			printWeather = Cloud
-			break;
-		
-			case 'Clear':
-			printWeather = Sunny
-			break;
-	
-			// case 'Rain':
-			// printWeather = <CloudIcon />
-			// break;
-	
-			
-		default:
-			break;
-	}
+	let printWeatherBackground;
 
 	switch (getWeather) {
 		case 'Clouds':
-			printWeatherBackground = '#74b2e5'
+			printWeatherBackground = 'linear-gradient(0deg, rgba(93,161,255,1) 0%, rgba(0,193,255,1) 100%)'
 			break;
 		
 			case 'Clear':
-			printWeatherBackground = '#ffd277'
+			printWeatherBackground = 'linear-gradient(0deg, rgba(255,176,93,1) 0%, #ffae00 100%)'
 			break;
 	
 		default:
+			printWeatherBackground = 'linear-gradient(0deg, rgba(93,161,255,1) 0%, rgba(0,193,255,1) 100%)'
 			break;
 	}
 
 	return ( 
-		<div className="result_container" style={{backgroundColor: printWeatherBackground}}>
+		<div className="result_container" style={{background: printWeatherBackground}}>
 			<div className="result_location" >
 			<MapPinIcon />
 			<h2>{name}, {country}</h2>
 			</div>
-			<img src={printWeather} alt="" />
-			<p className="result_weather">{getWeather}</p>
+			<img src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`} alt="" />
 			{/* Kelvin to Celcius */}
 			<p className="result_temp">{(temp - 273.15).toFixed(0)}<span>°C</span></p>
 			<div className="result_temp_max_min">
