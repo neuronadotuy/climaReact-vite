@@ -1,84 +1,226 @@
 body {
-  font-family: 'Hubballi', cursive;
-  background-color: #f1f5f9;
-  font-size: 1.6rem;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background: rgb(0,126,101);
+  background: linear-gradient(45deg, rgb(0, 156, 125) 18%, rgba(26,140,163,1) 44%, rgba(232,93,255,1) 100%);
+  background-size: cover;
+  background-repeat:no-repeat;
+  font-size: 1rem;
 }
 header {
-  background-color: #0ea5e9;
-  padding: 1.5rem;
-  border-bottom: 1rem solid #0284c7;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
 }
 header h1 {
   text-align: center;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  letter-spacing: .5rem;
+  font-weight: 400;
+  text-transform: uppercase;
   margin:0;
 }
-.dos-columnas {
-  display: grid;
-  gap: 4rem;
-}
-@media (min-width: 768px) {
-  .dos-columnas {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+
 main {
-  margin: 4rem auto;
-  max-width: 1200px;
-}
-.contenedor {
-  margin: 0 auto 2rem auto;
-  border-radius: .5rem;
-  background-color: white;
-  padding: 4rem;
-  -webkit-box-shadow: 0px 10px 33px -17px rgba(173,173,173,1);
-  -moz-box-shadow: 0px 10px 33px -17px rgba(173,173,173,1);
-  box-shadow: 0px 10px 33px -17px rgba(173,173,173,1);
-  width: 100%;
-}
-form {
-  width: 100%;
-}
-.campo {
-  max-width: 400px;
-  margin: 0 auto 1rem auto;
-}
-.campo label {
-  display: block;
-
-}
-.campo input,
-.campo select {
-  all: unset;
-  border: 1px solid #cbd5e1;
-  width: 100%;
-  border-radius: 1rem;
-  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
- input[type="submit"] {
-  background-color: #0ea5e9;
-  margin: 2rem auto 0 auto;
-  display: block;
-  padding: 1rem 3rem;
+.search_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.search_form {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+
+.search_form .input_container{
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.search_form .input_container label{
+  width: 16px;
   color: white;
+  display: flex;
+}
+
+.search_form .input_container input{
+  min-width: 120px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #242424;
   text-transform: uppercase;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 16px;
+  border: none;/* border: 1px solid white; */
+  outline: none;
+  padding: 4px 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.search_form .input_container input:focus {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.search_button {
+  display: flex;
+  background: none;
   border: none;
+  cursor: pointer;
+}
+
+.search_button svg {
+  width: 16px;
+  color: white;
+}
+
+.result {
+  max-width: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+.result_container {
+  max-width: 360px;
+  min-width: 260px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 1px 16px 43px -9px rgba(0,0,0,0.5);
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px;
+  justify-content: center;
+}
+
+.result_location {
   width: 100%;
-  transition: background-color .3s ease;
-}
-@media (min-width: 768px) {
-   input[type="submit"]  {
-     max-width: 400px;
+  align-items: center;
+  display: flex;
+  gap: 6px;
+  padding-bottom: 24px;
   }
+
+.result_location h2 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
 }
- input[type="submit"]:hover {
-  background-color: #0369a1;
+
+.result_location svg {
+  width: 18px;
 }
+
+.result_weather {
+  margin: 0;
+  padding-bottom: 16px;
+  font-size: 16px;
+}
+
+.result_temp {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  padding-left: 16px;
+  font-weight: 700;
+  font-size: 64px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.result_temp span {
+  font-weight: 400;
+  font-size: 16px;
+  padding-top: 12px;
+  margin: 0;
+}
+
+.result_temp_max_min {
+  display: flex;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.result_temp_min, .result_temp_max {
+  min-width: 70px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 16px 43px -9px rgba(0,0,0,0.25);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.result_temp_min p, .result_temp_max p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.result_temp_min .temp, .result_temp_max .temp {
+  display: flex;
+  padding-top: 6px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.result_temp_min .temp span, .result_temp_max .temp span {
+  font-weight: 400;
+  font-size: 10px;
+  padding-top: 4px;
+  padding-left: 4px;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0 12px;
+  gap: 24px;
+}
+
+.footer p {
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.footer a {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 12px;
+  transition: background-color .3s ease-in-out;
+}
+
+.footer a:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.footer div {
+  display: flex;
+  gap: 12px;
+}
+
+
+
+
 
 
 .loading {
@@ -87,3 +229,54 @@ form {
   align-items: center;
   width: 100%;
 }
+
+/* Spinner */
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  border-radius: 100%;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+/* End of Spinner */

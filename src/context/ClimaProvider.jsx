@@ -5,12 +5,12 @@ const ClimaContext = createContext();
 
 const ClimaProvider = ({ children }) => {
 
-	console.log(import.meta.env.VITE_API_KEY);
-
 	const [busqueda, setBusqueda] = useState({
 		ciudad: '',
-		pais: '',
 	});
+
+	const [result, setResult] = useState({});
+	const [loading, setLoading] = useState(false);
 
 	const datosBusqueda = (e) => {
 		setBusqueda({
@@ -21,9 +21,22 @@ const ClimaProvider = ({ children }) => {
 
 	const consultarClima = async (datos) => {
 		try {
+			// reset result and include a loading spinner
+			setResult({});
+			setLoading(true);
+
+			// api calls
 			const appId = import.meta.env.VITE_API_KEY;
-			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${datos.ciudad},${datos.pais}&appid=${appId}`;
-			console.log(url);
+			const url = `http://api.openweathermap.org/geo/1.0/direct?q=${datos.ciudad}&appid=${appId}`;
+			const getLonLat = await axios(url);
+			const { lon, lat } = getLonLat.data[0];
+
+			const urlClima = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`;
+			const res = await axios(urlClima);
+			setResult(res.data);
+
+			// remove the spinner
+			setLoading(false);
 		} catch (error) {
 			console.log(error);
 		}
@@ -35,6 +48,8 @@ const ClimaProvider = ({ children }) => {
 				busqueda,
 				datosBusqueda,
 				consultarClima,
+				result,
+				loading,
 			}}
 		>
 			{children}
